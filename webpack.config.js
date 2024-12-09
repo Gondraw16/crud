@@ -17,9 +17,9 @@ module.exports = {
         hot: true,
         compress: true,
         watchFiles: ['src/**/*'],
-        devMiddleware: {
-            writeToDisk: true,
-        },
+        // devMiddleware: {
+        //     writeToDisk: true,
+        // },
     },
 
     module: {
@@ -34,6 +34,11 @@ module.exports = {
                 test: /\.css$/i,
                 use: [MiniCssExtractPlugin.loader, 'css-loader'], 
             },
+
+            {
+                test: /\.html$/i,
+                loader: "html-loader", 
+            }
         ],
     },
 
