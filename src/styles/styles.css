@@ -14,8 +14,7 @@ button, input {
 }
 
 
-
-i {
+i, .nav-item p {
     pointer-events: none;
 }
 
@@ -29,7 +28,18 @@ i {
     cursor: pointer;
     transition: .3s ease all;
     background-color: transparent;
-    color: #787878;
+}
+
+.btn.show {
+    background-color: #000;
+}
+
+.btn:disabled {
+    cursor: default;
+}
+
+.btn:disabled:hover {
+    background-color: transparent;
 }
 
 .btn:hover {
@@ -40,7 +50,75 @@ i {
     border-radius: 50%;
 }
 
+.btn.pagination {
+    font-size: 14px;
+    width: 32px;
+}
+
+.btn-primary, .btn-danger {
+    padding: 8px 20px;
+    font-size: 15px;
+    background-color: #1C1C1C;
+    color: #FFF;
+    border: 0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: .3s ease all;
+    border: 1px solid #4a4a4a;
+}
+
+.btn-danger {
+    background-color: #a41111;
+}
+
+.btn-primary i, .btn-danger i {
+    font-size: 20px;
+}
+
+.btn-primary:hover {
+    background-color: #3C3C3C;
+}
+
+.btn-danger:hover {
+    background-color: #d71717;
+}
+
+.toast {
+    position: absolute;
+    color: #FFF;
+    top: 90px;
+    user-select: none;
+    left: 50%;
+    transform: translate(0, -50%);
+    top: 174px;
+    padding: 20px;
+    background-color: #000;
+    z-index: 1000;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.7);
+    visibility: hidden;
+}
+
+.toast.black {
+    background-color: #000;
+}
+
+.toast.red {
+    background-color: #a41111;
+}
+
+.toast.show {
+    visibility: visible;
+    animation: fadeInOut 2s;
+}
+
+@keyframes fadeInOut {
+    5%, 95%{opacity:1;top:100px}
+    15%, 85%{opacity:1;top:174px}
+}
+
 .container {
+    position: relative;
     width: 100%;
     min-height: 100vh;
     background-color: #FFF;
@@ -133,7 +211,7 @@ header button:nth-child(2) {
     border-left: 2px solid #000;
 }
 
-.logo-container a {
+.logo-container span {
     display: block;
     width: 100%;
     display: flex;
@@ -311,7 +389,8 @@ nav .nav-item i {
     width: 100%;
     display: grid;
     grid-template-columns: auto 1fr auto auto;
-    padding: 5px 30px;
+    padding: 0px 30px;
+    height: 41.3px;
     gap: 30px;
     align-items: center;
     border-bottom: 1px solid #2c2c2c;
@@ -345,12 +424,12 @@ nav .nav-item i {
     display: grid;
     align-items: center;
     overflow: hidden;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 250px 1fr;
 }
 
 .message-type {
     position: absolute;
-    left:125px;   
+    left:170px;   
     font-size: 13px;
     font-weight: 500;
     padding: 13px;
@@ -370,20 +449,20 @@ nav .nav-item i {
 .main-content .information-container-grid .username {
     display: flex;
     align-items: center;
-    margin-right: 80px;
 }
 
 .main-content .information-container-grid .message {
     display: flex;
-    gap: 10px;
     align-items: center;
+    gap: 10px;
+    position: relative;
 }
 
 .main-content .information-container-grid .message strong {
     display: flex;
     align-items: center;
     font-weight: 800;
-    text-wrap: nowrap;
+    white-space: nowrap;
 }
 
 .main-content .information-container-grid .message .message-data {
@@ -414,9 +493,30 @@ nav .nav-item i {
 
 /* CHILDREN STYLES */
 
+
+/* OPEN ITEM */
+
+.main-content  .data-container{
+    width: 100%;
+    padding: 50px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    gap:20px;
+}
+
+
+/* OPEN ITEM */
+
 /* QUERYS */
 
 @media screen and (max-width:1170px) {
+
+    .main-content .item-container-grid {
+        height: auto;
+        padding: 10px;
+    }
 
     .main-content .information-container-grid {
         grid-template-columns: auto;
@@ -513,3 +613,143 @@ nav .nav-item i {
 }
  
 /* QUERYS */
+
+/* LOADERS */
+
+
+.lds-roller,
+.lds-roller div,
+.lds-roller div:after {
+  box-sizing: border-box;
+}
+.lds-roller {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-roller div {
+  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  transform-origin: 40px 40px;
+}
+.lds-roller div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 7.2px;
+  height: 7.2px;
+  border-radius: 50%;
+  background: #FFF;
+  margin: -3.6px 0 0 -3.6px;
+}
+.lds-roller div:nth-child(1) {
+  animation-delay: -0.036s;
+}
+.lds-roller div:nth-child(1):after {
+  top: 62.62742px;
+  left: 62.62742px;
+}
+.lds-roller div:nth-child(2) {
+  animation-delay: -0.072s;
+}
+.lds-roller div:nth-child(2):after {
+  top: 67.71281px;
+  left: 56px;
+}
+.lds-roller div:nth-child(3) {
+  animation-delay: -0.108s;
+}
+.lds-roller div:nth-child(3):after {
+  top: 70.90963px;
+  left: 48.28221px;
+}
+.lds-roller div:nth-child(4) {
+  animation-delay: -0.144s;
+}
+.lds-roller div:nth-child(4):after {
+  top: 72px;
+  left: 40px;
+}
+.lds-roller div:nth-child(5) {
+  animation-delay: -0.18s;
+}
+.lds-roller div:nth-child(5):after {
+  top: 70.90963px;
+  left: 31.71779px;
+}
+.lds-roller div:nth-child(6) {
+  animation-delay: -0.216s;
+}
+.lds-roller div:nth-child(6):after {
+  top: 67.71281px;
+  left: 24px;
+}
+.lds-roller div:nth-child(7) {
+  animation-delay: -0.252s;
+}
+.lds-roller div:nth-child(7):after {
+  top: 62.62742px;
+  left: 17.37258px;
+}
+.lds-roller div:nth-child(8) {
+  animation-delay: -0.288s;
+}
+.lds-roller div:nth-child(8):after {
+  top: 56px;
+  left: 12.28719px;
+}
+@keyframes lds-roller {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* LOADERS */
+
+
+/* CONFIR */
+
+.modal {
+    position: absolute;
+    width: calc(100% -  100px);
+    min-height: calc(100% - 100px);
+    background-color: rgba(0, 0, 0, 0.7);
+    margin-top: 50px;
+    margin-left: 50px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup {
+    background-color: #000;
+    color: #FFF;
+    padding: 30px 30px;
+    border-radius: 5px;
+    border: 1px solid #3d3d3d;
+}
+
+.popup p {
+    font-size: 23px;
+}
+
+.popup .btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+    padding: 10px;
+    margin-top: 80px;
+}
+
+.popup .btn-container .btn-primary, .popup .btn-container .btn-danger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* CONFIR */
